@@ -53,10 +53,13 @@ class ArticleTableViewController: UITableViewController {
     
     // MARK: - Table view delegate
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.alpha = 0
+        
+        let rotationAngleInRadians = 90.0 * CGFloat(Double.pi/180.0)
+        let rotationTransform = CATransform3DMakeRotation(rotationAngleInRadians, 0, 0, 1)
+        cell.layer.transform = rotationTransform
         
         UIView.animate(withDuration: 1.0) {
-            cell.alpha = 1
+            cell.layer.transform = CATransform3DIdentity
         }
     }
 }
