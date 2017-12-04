@@ -17,6 +17,7 @@ class ArticleTableViewController: UITableViewController {
                       "Creating Gradient Colors Using CAGradientLayer",
                       "A Beginner's Guide to CALayer"];
     let postImages = ["imessage-sticker-pack", "face-detection-featured", "speech-kit-featured", "vapor-web-framework", "cagradientlayer-demo", "calayer-featured"];
+    fileprivate var displayedRows: [Int] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +55,11 @@ class ArticleTableViewController: UITableViewController {
     // MARK: - Table view delegate
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
+        guard !displayedRows.contains(indexPath.row) else {
+            return
+        }
+        
+        displayedRows.append(indexPath.row)
         let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -500, 100, 0)
         cell.layer.transform = rotationTransform
         
