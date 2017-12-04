@@ -31,7 +31,6 @@ class ArticleTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -51,5 +50,13 @@ class ArticleTableViewController: UITableViewController {
         return cell
     }
     
-
+    
+    // MARK: - Table view delegate
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.alpha = 0
+        
+        UIView.animate(withDuration: 1.0) {
+            cell.alpha = 1
+        }
+    }
 }
